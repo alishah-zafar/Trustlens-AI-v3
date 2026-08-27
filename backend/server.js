@@ -12,7 +12,11 @@ config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+const corsOrigin = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim())
+  : true; // allow all in development
+
+app.use(cors({ origin: corsOrigin }));
 app.use(express.json({ limit: "10mb" }));
 
 // Health check
