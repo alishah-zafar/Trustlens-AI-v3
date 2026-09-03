@@ -1,7 +1,10 @@
 import { Router } from "express";
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
+import jsQR from "jsqr";
+import { analyzeUrl } from "../lib/url-checker.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const router = Router();
@@ -19,42 +22,71 @@ const upload = multer({
   },
 });
 
+/** Clean up the temp uploaded file */
+function cleanup(filePath) {
+  if (filePath) {
+    fs.unlink(filePath, (err) => {
+      if (err) console.error("Failed to cleanup upload:", err.message);
+    });
+  }
+}
+
 /**
  * POST /api/analyze/qrcode
- * Accepts a QR code image, decodes the embedded URL, then analyzes it via the URL pipeline.
- *
- * STUB: QR decoding (jsQR + jimp) is not yet implemented.
- * TODO: Decode the QR code with jsQR, extract the URL, then pass to analyzeUrl().
+ * Decodes a QR code from the uploaded image, then analyzes the extracted URL.
  */
 router.post("/", upload.single("image"), async (req, res) => {
+  const filePath = req.file?.path;
   try {
     if (!req.file) {
       return res.status(400).json({ error: "A QR code image is required." });
     }
 
-    // --- STUB: QR decoding not yet implemented ---
-    // import Jimp from "jimp";
-    // import jsQR from "jsqr";
-    //
-    // const image = await Jimp.read(req.file.path);
-    // const { data, width, height } = image.bitmap;
-    // const code = jsQR(new Uint8ClampedArray(data.buffer), width, height);
-    //
-    // if (!code) {
-    //   return res.status(400).json({ error: "Could not decode a QR code from this image." });
-    // }
-    //
-    // const extractedUrl = code.data;
-    // const { analyzeUrl } = await import("../lib/url-checker.js");
-    // const result = await analyzeUrl(extractedUrl);
-    // res.json({ inputType: "qrcode", extractedUrl, ...result });
+    const lang = req.body?.lang || "en";
 
-    res.status(501).json({
-      error: "QR code analysis is not yet implemented. jsQR integration coming soon.",
+    // Read the image and decode QR code
+    let code;
+    try {
+      const { Jimp } = await import("jimp");
+      const image = await Jimp.read(filePath);
+      const { data, width, height } = image.bitmap;
+      code = jsQR(new Uint8ClampedArray(data.buffer), width, height);
+    } catch (jimpErr) {
+      console.error("Image processing error:", jimpErr.message);
+      cleanup(filePath);
+      return res.status(400).json({
+        error: "Could not process this image. Make sure it's a valid image file.",
+        inputType: "qrcode",
+      });
+    }
+
+    cleanup(filePath);
+
+    if (!code) {
+      return res.status(400).json({
+        error: "Could not decode a QR code from this image. Make sure the QR code is clearly visible.",
+        inputType: "qrcode",
+      });
+    }
+
+    const extractedUrl = code.data;
+
+    // Validate that it looks like a URL
+    let urlToAnalyze = extractedUrl;
+    if (!/^https?:\/\//i.test(urlToAnalyze)) {
+      urlToAnalyze = "https://" + urlToAnalyze;
+    }
+
+    // Analyze the extracted URL
+    const result = await analyzeUrl(urlToAnalyze, lang);
+
+    res.json({
       inputType: "qrcode",
-      uploadedFile: req.file.filename,
+      extractedUrl: extractedUrl,
+      ...result,
     });
   } catch (err) {
+    cleanup(filePath);
     console.error("QR code analysis error:", err);
     res.status(500).json({ error: "Failed to analyze QR code." });
   }

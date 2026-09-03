@@ -12,4 +12,6 @@ export default defineConfig({
       },
     },
   },
+  // SPA fallback — all routes serve index.html for React Router
+  appType: "spa",
 });

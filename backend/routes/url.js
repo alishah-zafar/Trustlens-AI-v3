@@ -5,7 +5,7 @@ const router = Router();
 
 router.post("/", async (req, res) => {
   try {
-    let { url } = req.body;
+    let { url, lang } = req.body;
 
     if (!url || typeof url !== "string" || url.trim().length === 0) {
       return res.status(400).json({ error: "A URL is required." });
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Invalid URL format." });
     }
 
-    const result = await analyzeUrl(url);
+    const result = await analyzeUrl(url, lang);
     res.json({ inputType: "url", ...result });
   } catch (err) {
     console.error("URL analysis error:", err);

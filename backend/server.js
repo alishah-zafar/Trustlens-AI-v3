@@ -1,13 +1,11 @@
 import express from "express";
 import cors from "cors";
-import { config } from "dotenv";
 
 import textRouter from "./routes/text.js";
 import urlRouter from "./routes/url.js";
 import screenshotRouter from "./routes/screenshot.js";
 import qrcodeRouter from "./routes/qrcode.js";
-
-config();
+import traceLinkRouter from "./routes/trace-link.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -21,7 +19,10 @@ app.use(express.json({ limit: "10mb" }));
 
 // Health check
 app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok", mode: process.env.OPENAI_API_KEY ? "llm" : "mock" });
+  res.json({ 
+    status: "ok", 
+    mode: process.env.OPENAI_API_KEY ? "llm" : "mock",
+  });
 });
 
 // Routes
@@ -29,6 +30,7 @@ app.use("/api/analyze/text", textRouter);
 app.use("/api/analyze/url", urlRouter);
 app.use("/api/analyze/screenshot", screenshotRouter);
 app.use("/api/analyze/qrcode", qrcodeRouter);
+app.use("/api/analyze/trace-link", traceLinkRouter);
 
 // Global error handler
 app.use((err, _req, res, _next) => {
@@ -37,6 +39,7 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(PORT, () => {
-  const mode = process.env.OPENAI_API_KEY ? "LLM" : "MOCK";
-  console.log(`TrustLens AI backend running on port ${PORT} [${mode} mode]`);
+  const textMode = process.env.OPENAI_API_KEY ? "LLM" : "MOCK";
+  console.log(`TrustLens AI backend running on port ${PORT}`);
+  console.log(`  Text analysis: ${textMode} mode`);
 });

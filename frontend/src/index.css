@@ -4,17 +4,461 @@
 
 @layer base {
   body {
-    @apply min-h-screen;
+    @apply min-h-screen bg-base text-txt;
+    font-family: 'Inter', 'Manrope', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Urdu script font — Noto Nastaliq Urdu for proper RTL rendering */
+  [dir="rtl"],
+  .font-urdu {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaliq', 'Inter', system-ui, sans-serif;
+    line-height: 2.2; /* Nastaliq needs more vertical space */
+  }
+
+  /* Urdu text wrapping — prevent overflow with long Urdu strings */
+  [dir="rtl"] p,
+  .font-urdu p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+  .animate-slide-up {
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 }
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
+
+/* Fade + subtle upward slide */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full;
+
+/* More pronounced slide for staggered results sections */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Shield pulse */
+@keyframes shieldPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Horizontal scan line */
+@keyframes scanLine {
+  0% { top: 12%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { top: 82%; opacity: 0; }
+}
+
+/* Tooltip fade-in */
+@keyframes tooltipIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glow pulse for accent elements */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Particle drift */
+@keyframes particleDrift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+/* Custom scrollbar — minimal dark */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3A3A3A; }
+
+/* Gradient accent — bold red */
+.gradient-accent {
+  background: #E53E3E;
+}
+.gradient-accent-warm {
+  background: linear-gradient(135deg, #E53E3E, #9B2C2C);
+}
+
+/* ─── Global app shell — near-black with subtle red glow accents ─── */
+.app-shell {
+  background:
+    radial-gradient(1100px 520px at 88% -12%, rgba(229, 62, 62, 0.07), transparent 60%),
+    radial-gradient(900px 620px at 6% 112%, rgba(229, 62, 62, 0.06), transparent 60%),
+    #0A0A0A;
+  min-height: 100vh;
+}
+
+/* ─── Theme card — dark surface, thin red border, red glow on hover ─── */
+.theme-card {
+  background: #141414;
+  border: 1px solid rgba(229, 62, 62, 0.22);
+  border-radius: 0.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.theme-card:hover {
+  border-color: rgba(229, 62, 62, 0.55);
+  box-shadow: 0 0 24px rgba(229, 62, 62, 0.12);
+}
+
+/* Loading shield */
+.shield-pulse {
+  animation: shieldPulse 2s ease-in-out infinite;
+}
+.shield-scan {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(229, 62, 62, 0.6) 50%, transparent 100%);
+  animation: scanLine 1.8s ease-in-out infinite;
+}
+
+/* Tactic chip tooltip */
+.tactic-chip {
+  position: relative;
+  cursor: pointer;
+}
+.tactic-chip .tactic-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background: #1C1C1C;
+  border: 1px solid #2A2A2A;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 220px;
+  white-space: normal;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+.tactic-chip .tactic-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1C1C1C;
+}
+.tactic-chip:hover .tactic-tooltip,
+.tactic-chip:focus-within .tactic-tooltip {
+  opacity: 1;
+  animation: tooltipIn 0.15s ease-out;
+}
+
+/* ─── Card styles — solid, minimal ─── */
+.glass {
+  background: #141414;
+  border: 1px solid #2A2A2A;
+}
+.glass-card {
+  background: #141414;
+  border: 1px solid #2A2A2A;
+  border-radius: 0.5rem;
+  transition: border-color 0.2s ease;
+}
+.glass-card:hover {
+  border-color: #3A3A3A;
+}
+.glass-card.static {
+  cursor: default;
+}
+.glass-card.static:hover {
+  border-color: #2A2A2A;
+}
+.glass-card.active {
+  border-color: rgba(229, 62, 62, 0.5);
+  box-shadow: 0 0 20px rgba(229, 62, 62, 0.08);
+}
+
+/* ─── Analysis type cards ─── */
+.analysis-card {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.analysis-card .card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease;
+}
+.analysis-card:hover .card-icon { transform: scale(1.05); }
+
+/* ─── Hero ─── */
+.hero-gradient {
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.9) 100%);
+}
+@keyframes handsFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.hero-hands-anim { animation: handsFloat 4s ease-in-out infinite; }
+@keyframes sparkPulse {
+  0%, 100% { opacity: 0.5; r: 6; }
+  50% { opacity: 1; r: 9; }
+}
+.hero-spark { animation: sparkPulse 2.5s ease-in-out infinite; }
+
+/* ─── Scanning steps ─── */
+@keyframes scanStepIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.scan-step {
+  animation: scanStepIn 0.4s ease-out both;
+}
+@keyframes scanDot {
+  0%, 80%, 100% { opacity: 0.3; }
+  40% { opacity: 1; }
+}
+.scan-dot-1 { animation: scanDot 1.4s ease-in-out infinite; }
+.scan-dot-2 { animation: scanDot 1.4s ease-in-out 0.2s infinite; }
+.scan-dot-3 { animation: scanDot 1.4s ease-in-out 0.4s infinite; }
+
+/* ─── CTA button — bold red ─── */
+.cta-btn {
+  background: #E53E3E;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 12px 32px;
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.15s ease;
+  letter-spacing: 0.02em;
+}
+.cta-btn:hover {
+  background: #FC8181;
+  transform: translateY(-1px);
+}
+.cta-btn:active { transform: translateY(0); }
+
+/* Ghost button */
+.ghost-btn {
+  background: transparent;
+  color: #A0A0A0;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid #2A2A2A;
+  transition: all 0.2s ease;
+}
+.ghost-btn:hover {
+  color: #FFFFFF;
+  border-color: #4A4A4A;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ─── Logo — minimal ─── */
+@keyframes logoPulse {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(229, 62, 62, 0.3)); }
+  50% { filter: drop-shadow(0 0 8px rgba(229, 62, 62, 0.5)); }
+}
+.logo-shield { animation: logoPulse 3s ease-in-out infinite; }
+
+/* ─── Hero noir art — decorative layers (landing page) ─── */
+.hero-noir {
+  background:
+    linear-gradient(180deg, #0A0A0A 0%, rgba(10, 10, 10, 0) 9%),
+    linear-gradient(0deg, #0A0A0A 0%, rgba(10, 10, 10, 0) 13%),
+    radial-gradient(620px 460px at 6% 66%, rgba(255, 0, 51, 0.10), transparent 62%),
+    radial-gradient(520px 420px at 96% 38%, rgba(255, 0, 51, 0.07), transparent 62%),
+    radial-gradient(760px 360px at 50% -8%, rgba(255, 0, 51, 0.05), transparent 60%),
+    #0D0D0D;
+}
+
+/* Neon red glow for the two-tone hero title */
+.title-glow-red {
+  text-shadow: 0 0 16px rgba(255, 0, 51, 0.55), 0 0 46px rgba(255, 0, 51, 0.28);
+}
+
+/* Dark matrix grid behind the right-side floating icons */
+.matrix-grid {
+  background-image:
+    linear-gradient(rgba(255, 0, 51, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 51, 0.055) 1px, transparent 1px);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(260px 380px at 75% 45%, rgba(0, 0, 0, 0.85) 20%, transparent 70%);
+  mask-image: radial-gradient(260px 380px at 75% 45%, rgba(0, 0, 0, 0.85) 20%, transparent 70%);
+}
+
+@keyframes noirFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.noir-float { animation: noirFloat 6s ease-in-out infinite; }
+
+@keyframes badgeFlicker {
+  0%, 100% { opacity: 1; }
+  7% { opacity: 0.35; }
+  11% { opacity: 1; }
+  45% { opacity: 1; }
+  49% { opacity: 0.5; }
+  53% { opacity: 1; }
+}
+.badge-flicker { animation: badgeFlicker 4.5s linear infinite; }
+
+@keyframes wispDrift {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.85; }
+  50% { transform: translateY(-10px) scale(1.04); opacity: 1; }
+}
+.wisp-anim { animation: wispDrift 9s ease-in-out infinite; }
+
+/* Ambient cyber glow — red aura behind hero center + corner detective + right smoke */
+.ambient-glow {
+  background:
+    radial-gradient(circle at 14% 78%, rgba(255, 0, 51, 0.15) 0%, rgba(0, 0, 0, 0) 70%),
+    radial-gradient(circle at 50% 40%, rgba(255, 0, 51, 0.15) 0%, rgba(0, 0, 0, 0) 70%),
+    radial-gradient(circle at 88% 45%, rgba(255, 0, 51, 0.10) 0%, rgba(0, 0, 0, 0) 65%);
+}
+
+/* Noir detective art — red glow blend + 3-edge fades (no rectangular seams) */
+.detective-glow {
+  filter: drop-shadow(0px 0px 25px rgba(255, 0, 51, 0.5));
+  mix-blend-mode: screen;
+  -webkit-mask-image:
+    linear-gradient(90deg, #000 78%, transparent 98%),
+    linear-gradient(to bottom, transparent 0%, #000 7%),
+    linear-gradient(to top, transparent 0%, #000 6%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, #000 78%, transparent 98%),
+    linear-gradient(to bottom, transparent 0%, #000 7%),
+    linear-gradient(to top, transparent 0%, #000 6%);
+  mask-composite: intersect;
+}
+
+/* ─── Responsive: Mobile ─── */
+@media (max-width: 639px) {
+  .cta-btn {
+    width: 100%;
+    padding: 14px 24px;
+  }
+}
+
+/* ─── Touch devices ─── */
+@media (hover: none) and (pointer: coarse) {
+  .glass-card:hover {
+    border-color: #2A2A2A;
+  }
+  .theme-card:hover {
+    border-color: rgba(229, 62, 62, 0.22);
+    box-shadow: none;
+  }
+  .glass-card.active:hover {
+    border-color: rgba(229, 62, 62, 0.5);
+  }
+  .analysis-card:hover .card-icon {
+    transform: none;
+  }
+  .cta-btn:hover {
+    background: #E53E3E;
+    transform: none;
+  }
+  .cta-btn:active {
+    transform: scale(0.98);
+  }
+  .tactic-chip:hover .tactic-tooltip {
+    opacity: 0;
+  }
+  .tactic-chip:active .tactic-tooltip,
+  .tactic-chip:focus-within .tactic-tooltip {
+    opacity: 1;
+  }
+}
+
+/* ─── RTL support ─── */
+[dir="rtl"] .scan-step {
+  animation-name: scanStepInRtl;
+}
+@keyframes scanStepInRtl {
+  from { opacity: 0; transform: translateX(8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Mobile slide-in menu */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.25s ease-out;
+}
+
+[dir="rtl"] .tactic-chip .tactic-tooltip {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+[dir="rtl"] .tactic-chip .tactic-tooltip::after {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* ─── Reduced motion preference ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-hands-anim,
+  .hero-spark,
+  .noir-float,
+  .badge-flicker,
+  .wisp-anim,
+  .shield-pulse,
+  .shield-scan,
+  .logo-shield,
+  .scan-dot-1,
+  .scan-dot-2,
+  .scan-dot-3,
+  .animate-slide-in-right {
+    animation: none !important;
+  }
+  .glass-card,
+  .cta-btn,
+  .ghost-btn {
+    transition: none;
+  }
+  .animate-fade-in,
+  .animate-slide-up,
+  .scan-step {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  canvas {
+    animation: none !important;
+  }
 }
