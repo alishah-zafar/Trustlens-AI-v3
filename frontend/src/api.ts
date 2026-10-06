@@ -48,7 +48,7 @@ export interface LinkTraceResult {
   isSuspicious: boolean;
 }
 
-const BASE = `${import.meta.env.VITE_API_BASE_URL || ""}/api`;
+const BASE = "https://trustlens-ai-production-2644.up.railway.app/api`";
 
 export async function analyzeText(text: string, lang = "en"): Promise<AnalysisResult> {
   const res = await fetch(`${BASE}/analyze/text`, {
