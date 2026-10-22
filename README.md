@@ -273,14 +273,6 @@ Future versions of TrustLens AI could include:
 
 ---
 
-🏆 Hackathon Project
-
-**TrustLens AI** was developed as an AI-powered solution for the **Alibaba Cloud AI Hackathon Pakistan 2026**.
-
-The project focuses on using Artificial Intelligence to improve digital safety and help users make safer decisions when encountering potentially fraudulent content.
-
----
-
 ⚠️ Disclaimer
 
 TrustLens AI provides AI-generated risk assessments and should not be considered a guarantee that content is legitimate or fraudulent.
