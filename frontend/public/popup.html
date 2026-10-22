@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>TrustLens AI</title>
+</head>
+<body>
+  <header>
+    <div class="brand"><img class="logo" src="icons/icon32.png" alt=""> TrustLens <b>AI</b></div>
+    <select id="lang" title="Language">
+      <option value="en">EN</option>
+      <option value="roman-urdu">RU</option>
+      <option value="urdu">اردو</option>
+    </select>
+  </header>
+
+  <nav>
+    <button class="tab active" data-tab="page">This page</button>
+    <button class="tab" data-tab="text">Text</button>
+    <button class="tab" data-tab="link">Link</button>
+    <button class="tab" data-tab="screenshot">Screenshot</button>
+    <button class="tab" data-tab="qrcode">QR</button>
+  </nav>
+
+  <section id="pane-page" class="pane">
+    <div id="pageUrl" class="url"></div>
+    <button id="scanPage" class="primary">Scan this page</button>
+  </section>
+
+  <section id="pane-text" class="pane hidden">
+    <textarea id="textInput" placeholder="Paste a message, email, or job offer…" maxlength="10000"></textarea>
+    <button id="scanText" class="primary">Analyze text</button>
+  </section>
+
+  <section id="pane-link" class="pane hidden">
+    <input id="linkInput" type="text" placeholder="https://suspicious-link.com" />
+    <button id="scanLink" class="primary">Check link</button>
+    <button id="traceLink" class="secondary">Trace redirects</button>
+  </section>
+
+
+  <section id="pane-screenshot" class="pane imgpane hidden" data-kind="screenshot">
+    <div class="drop" tabindex="0">
+      <img class="preview hidden" alt="" />
+      <div class="drop-hint">Add a screenshot of a message, chat or website<br><small>Drop, click to choose, or press Ctrl+V to paste</small></div>
+    </div>
+    <input type="file" class="file hidden" accept="image/png,image/jpeg,image/webp,image/bmp" />
+    <button class="capture secondary">Capture this tab</button>
+    <button class="scan primary" disabled>Analyze screenshot</button>
+  </section>
+
+  <section id="pane-qrcode" class="pane imgpane hidden" data-kind="qrcode">
+    <div class="drop" tabindex="0">
+      <img class="preview hidden" alt="" />
+      <div class="drop-hint">Add an image containing a QR code<br><small>Drop, click to choose, or press Ctrl+V to paste</small></div>
+    </div>
+    <input type="file" class="file hidden" accept="image/png,image/jpeg,image/webp,image/bmp" />
+    <button class="capture secondary">Capture this tab</button>
+    <button class="scan primary" disabled>Scan QR code</button>
+  </section>
+
+  <div id="status" class="status hidden"></div>
+  <div id="result" class="hidden"></div>
+
+  <footer><a id="openWeb" href="#">Open full TrustLens →</a></footer>
+  <script src="config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
