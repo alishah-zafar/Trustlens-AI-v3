@@ -9,6 +9,7 @@ import Analyze from "./pages/Analyze";
 import ResultsPage from "./pages/ResultsPage";
 import History from "./pages/History";
 import About from "./pages/About";
+import Extension from "./pages/Extension";
 
 export default function App() {
   const [lang, setLang] = useState("en");
@@ -25,6 +26,7 @@ export default function App() {
               <Route path="/results/:id" element={<ResultsPage />} />
               <Route path="/history" element={<History />} />
               <Route path="/about" element={<About />} />
+              <Route path="/extension" element={<Extension />} />
             </Route>
           </Routes>
         </div>
