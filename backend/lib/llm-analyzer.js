@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // ---------------------------------------------------------------------------
 // LLM System Prompt — chain-of-thought reasoning before scoring
@@ -140,48 +140,84 @@ IMPORTANT RULES:
 - All user-facing fields (explanation, redFlags, recommendations) MUST be in Urdu.`,
 };
 
-let openaiClient = null;
+
+let geminiClient = null;
 
 function getClient() {
-  if (!openaiClient && process.env.OPENAI_API_KEY) {
-    openaiClient = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-      baseURL: process.env.OPENAI_BASE_URL || "https://api.openai.com/v1",
-    });
+  if (!geminiClient && process.env.GEMINI_API_KEY) {
+    geminiClient = new GoogleGenerativeAI(
+      process.env.GEMINI_API_KEY
+    );
   }
-  return openaiClient;
+
+  return geminiClient;
 }
 
 /**
- * Analyze text for scam indicators.
- * Falls back to a heuristic mock when no API key is configured.
+ * Analyze text for scams, threats, and manipulation using Gemini.
  */
 export async function analyzeText(text, lang) {
   const client = getClient();
 
   if (!client) {
-    return mockAnalyze(text, lang);
+    throw new Error(
+      "GEMINI_API_KEY is missing. Add it to backend/.env."
+    );
   }
 
-  const langInstruction = LANG_INSTRUCTIONS[lang] || LANG_INSTRUCTIONS.en;
+  const langInstruction =
+    LANG_INSTRUCTIONS[lang] || LANG_INSTRUCTIONS.en;
 
   try {
-    const response = await client.chat.completions.create({
-      model: process.env.OPENAI_MODEL || "gpt-4o-mini",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "system", content: `LANGUAGE: ${langInstruction}` },
-        { role: "user", content: `Analyze the following text for scam indicators:\n\n${text}` },
-      ],
-      temperature: 0.2,
-      response_format: { type: "json_object" },
+    const model = client.getGenerativeModel({
+      model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
+      systemInstruction: SYSTEM_PROMPT,
+      generationConfig: {
+        temperature: 0.1,
+        responseMimeType: "application/json",
+      },
     });
 
-    const result = JSON.parse(response.choices[0].message.content);
+    const prompt = `
+${langInstruction}
+
+Analyze this message for scams, threats, extortion, and manipulation.
+
+Important:
+- Explicit threats to kill or physically harm someone are high risk.
+- Threats combined with demands are high risk.
+- Do not require a URL or a request for money to detect a threat.
+- Detect the actual meaning, not only exact keyword matches.
+- Treat English, Urdu, and Roman Urdu threats seriously.
+- Return valid JSON with these exact keys:
+  "analysis", "detected_language", "riskScore", "confidence",
+  "explanation", "redFlags", "tactics", "recommendations",
+  "contains_url", "extracted_url".
+- riskScore must be a number from 0 to 100.
+- tactics must be an array using the tactic names in the system instructions.
+- If a direct threat of physical harm is present, include
+  "threat_of_harm" in tactics and recommend seeking help from
+  local law enforcement or emergency services if there is immediate danger.
+- Do not label an explicit threat as safe.
+- Return JSON only, with no Markdown fences.
+
+Message to analyze:
+<message>
+${text}
+</message>
+`;
+
+    const response = await model.generateContent(prompt);
+    const content = response.response.text();
+    const result = JSON.parse(content);
+
     return normalizeResult(result);
   } catch (err) {
-    console.error("LLM analysis error:", err.message);
-    return mockAnalyze(text, lang);
+    console.error("Gemini analysis error:", err.message);
+
+    throw new Error(
+      "Gemini analysis failed. Check the API key, model name, network, and backend logs."
+    );
   }
 }
 
