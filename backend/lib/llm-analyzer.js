@@ -1,5 +1,20 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { readFileSync } from "fs";
 
+let EXAMPLES_BLOCK = "";
+try {
+  const examples = JSON.parse(
+    readFileSync(new URL("./examples.json", import.meta.url), "utf-8")
+  );
+  EXAMPLES_BLOCK =
+    "\n\n## LABELED EXAMPLES (use as a guide for scoring)\n" +
+    examples
+      .map((e) => `- "${e.text.replace(/"/g, "'")}" => riskScore ${e.score}, ${e.verdict}`)
+      .join("\n");
+} catch (err) {
+  console.error("Examples not loaded:", err.message);
+}
+console.log("Examples loaded:", EXAMPLES_BLOCK.length, "characters");
 // ---------------------------------------------------------------------------
 // LLM System Prompt — chain-of-thought reasoning before scoring
 // ---------------------------------------------------------------------------
