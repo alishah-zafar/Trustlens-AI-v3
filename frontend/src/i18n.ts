@@ -165,8 +165,6 @@ export interface Strings {
     capLinkDesc: string;
     capMultiTitle: string;
     capMultiDesc: string;
-    hackTitle: string;
-    hackP: string;
   };
   footerLinks: { about: string; history: string; privacy: string; terms: string };
   rights: string;
@@ -333,8 +331,6 @@ const STRINGS: Record<string, Strings> = {
       capLinkDesc: "Follow redirect chains to reveal the real destination",
       capMultiTitle: "Multi-Modal",
       capMultiDesc: "Text, URLs, screenshots, and QR codes",
-      hackTitle: "Hackathon Project",
-      hackP: "TrustLens AI was built for a hackathon to demonstrate how AI can be used to protect vulnerable populations from increasingly sophisticated scam campaigns. The project combines natural language understanding, multi-modal input processing, and culturally-aware detection patterns to create a practical tool for scam prevention.",
     },
     footerLinks: { about: "About", history: "History", privacy: "Privacy", terms: "Terms" },
     rights: "TrustLens AI. All rights reserved.",
@@ -499,8 +495,6 @@ const STRINGS: Record<string, Strings> = {
       capLinkDesc: "Redirect chain ka pata laga kar asli destination dikhana",
       capMultiTitle: "Multi-Modal",
       capMultiDesc: "Text, URLs, screenshots aur QR codes",
-      hackTitle: "Hackathon Project",
-      hackP: "TrustLens AI ek hackathon ke liye banaya gaya hai — yeh dikhane ke liye ke AI kaise kamzor logon ko barhti hui scam campaigns se bacha sakta hai. Yeh project natural language understanding, multi-modal input processing aur culturally-aware detection patterns ko mila kar scam prevention ka amali tool banata hai.",
     },
     footerLinks: { about: "About", history: "History", privacy: "Privacy", terms: "Terms" },
     rights: "TrustLens AI. Tamam huqooq mahfooz hain.",
@@ -665,8 +659,6 @@ const STRINGS: Record<string, Strings> = {
       capLinkDesc: "ری ڈائریکٹ چین کا پتہ لگا کر اصل منزل دکھانا",
       capMultiTitle: "کثیر الاقسام",
       capMultiDesc: "متن، URL، اسکرین شاٹس اور QR کوڈز",
-      hackTitle: "ہیکاٹھون پروجیکٹ",
-      hackP: "TrustLens AI ایک ہیکاٹھون کے لیے بنایا گیا ہے تاکہ یہ دکھایا جا سکے کہ AI کمزور طبقات کو بڑھتی ہوئی اسکیم مہموں سے کیسے بچا سکتا ہے۔ یہ پروجیکٹ قدرتی زبان کی سمجھ، کثیر الاقسام ان پٹ پروسیسنگ اور ثقافتی شعور رکھنے والے ڈٹیکشن پیٹرنز کو ملا کر اسکیم سے بچاؤ کا عملی ٹول بناتا ہے۔",
     },
     footerLinks: { about: "تعارف", history: "ہسٹری", privacy: "پرائیویسی", terms: "شرائط" },
     rights: "TrustLens AI۔ جملہ حقوق محفوظ ہیں۔",
