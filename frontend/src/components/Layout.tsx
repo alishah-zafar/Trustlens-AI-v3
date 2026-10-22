@@ -17,6 +17,7 @@ export default function Layout() {
     { path: "/", label: t.nav.home },
     { path: "/analyze", label: t.nav.analyze },
     { path: "/history", label: t.nav.history },
+    { path: "/extension", label: lang === "urdu" ? "ایکسٹینشن" : "Extension" },
     { path: "/about", label: t.nav.about },
   ];
 
@@ -175,6 +176,7 @@ export default function Layout() {
             <div className="flex items-center gap-5 text-xs text-txt-dim">
               <Link to="/about" className="hover:text-white transition-colors">{t.footerLinks.about}</Link>
               <Link to="/history" className="hover:text-white transition-colors">{t.footerLinks.history}</Link>
+              <Link to="/extension" className="hover:text-white transition-colors">{lang === "urdu" ? "ایکسٹینشن" : "Extension"}</Link>
               <a href="#" className="hover:text-white transition-colors">{t.footerLinks.privacy}</a>
               <a href="#" className="hover:text-white transition-colors">{t.footerLinks.terms}</a>
             </div>
