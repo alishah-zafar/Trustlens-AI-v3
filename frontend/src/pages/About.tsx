@@ -75,13 +75,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team / Hackathon */}
-      <section className="theme-card p-6">
-        <h2 className="text-xl font-bold text-white mb-3">{t.aboutPage.hackTitle}</h2>
-        <p className="text-sm text-txt-muted leading-relaxed">
-          {t.aboutPage.hackP}
-        </p>
-      </section>
     </div>
   );
 }
