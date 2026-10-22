@@ -1,0 +1,482 @@
+[
+ {
+  "text": "Aapka JazzCash account block ho gaya hai. Foran PIN aur CNIC bhejein warna account band ho jayega.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "otp_pin"
+ },
+ {
+  "text": "Mubarak ho! Aap ka 10 lakh ka inaam nikla hai. Processing fee 5000 bhejein: http://claim-prize.xyz/pk",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "prize_fee"
+ },
+ {
+  "text": "Main NADRA se bol raha hun. Apna CNIC number aur OTP batayen, kisi ko mat batana.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "impersonation_otp"
+ },
+ {
+  "text": "BISP se 25,000 rupay manzoor hue hain. Apna CNIC aur account number is link par bhejein: http://bisp-claim.top",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "govt_scheme"
+ },
+ {
+  "text": "Tum ne agar paisay nahi diye to main tumhari tasveerein sab ko bhej doonga.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "blackmail"
+ },
+ {
+  "text": "Aap ka parcel custom mein ruka hua hai. Clearance fee 4500 bhejein: http://tcs-parcel.top",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "courier_fee"
+ },
+ {
+  "text": "Aap ka loan approve ho gaya hai. Processing fee 2000 pehle bhejna hoga.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "loan_fee"
+ },
+ {
+  "text": "Paisay bhejo warna dekh lena.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "threat_money"
+ },
+ {
+  "text": "Main FIA se bol raha hun, aap ke naam par case hai. Abhi 50 hazaar bhejein warna giraftari hogi.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "fake_authority"
+ },
+ {
+  "text": "Bhai main phans gaya hun, abhi Easypaisa par 15000 bhej do, kisi ko mat batana.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "friend_impersonation"
+ },
+ {
+  "text": "Aap ka bijli ka bill bakaya hai, aaj connection kat jayega. Payment link: http://bill-pay.xyz",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "utility_bill"
+ },
+ {
+  "text": "Congratulations! Aap Daraz lucky draw mein select hue hain. Gift lene ke liye apna card number bhejein.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "prize_card"
+ },
+ {
+  "text": "آپ کا ایزی پیسہ اکاؤنٹ بلاک ہو گیا ہے۔ فوراً اپنا پاس ورڈ بھیجیں۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "otp_pin"
+ },
+ {
+  "text": "مبارک ہو! آپ نے لاٹری جیتی ہے۔ انعام لینے کے لیے فیس جمع کریں۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "prize_fee"
+ },
+ {
+  "text": "آپ کا بینک اکاؤنٹ بلاک ہو گیا ہے۔ فوراً اپنا OTP کوڈ بھیجیں۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "otp_pin"
+ },
+ {
+  "text": "اگر آپ نے پیسے نہیں بھیجے تو میں آپ کی تصویریں سب کو بھیج دوں گا۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "blackmail"
+ },
+ {
+  "text": "آپ کی سم 24 گھنٹے میں بند ہو جائے گی۔ ابھی اس لنک پر کلک کریں: http://sim-verify.xyz",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "telecom_link"
+ },
+ {
+  "text": "بے نظیر انکم سپورٹ سے آپ کے 25000 روپے منظور ہوئے ہیں۔ اپنا اکاؤنٹ نمبر بھیجیں۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "govt_scheme"
+ },
+ {
+  "text": "فوراً پیسے بھیجو ورنہ تمہیں پچھتانا پڑے گا۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "threat_money"
+ },
+ {
+  "text": "آپ کا پارسل کسٹم میں رکا ہوا ہے۔ کلیئرنس فیس 4000 روپے بھیجیں۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "courier_fee"
+ },
+ {
+  "text": "یہ بات کسی کو مت بتانا، فوراً 20000 روپے ایزی پیسہ کر دو۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "secrecy_money"
+ },
+ {
+  "text": "آپ کا جاز کیش اکاؤنٹ تصدیق کے لیے بند ہو رہا ہے۔ ابھی اپنا پن نمبر بتائیں۔",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "otp_pin"
+ },
+ {
+  "text": "Your HBL account is suspended. Verify now: http://hbl-secure-login.xyz",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "phishing_link"
+ },
+ {
+  "text": "Send me 50,000 or I will expose your photos to everyone.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "blackmail"
+ },
+ {
+  "text": "Guaranteed 40% monthly return on crypto. No risk. Message me now.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "investment"
+ },
+ {
+  "text": "Dear customer, your bank card is blocked. Share your card number and OTP to unblock.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "otp_card"
+ },
+ {
+  "text": "Give me 1 lakh tomorrow or you will regret it. I know where you live.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "threat_harm"
+ },
+ {
+  "text": "I will kill you if you don't send the money today.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "threat_harm"
+ },
+ {
+  "text": "Hi dear, I am stuck abroad and need money urgently. Please send 500 dollars, I will repay you. Don't tell anyone.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "romance_money"
+ },
+ {
+  "text": "Your package could not be delivered. Pay the 2 dollar redelivery fee here: http://track-parcel.xyz",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "courier_fee"
+ },
+ {
+  "text": "You have been selected for a job paying $5000 per week. Pay a $100 training fee to begin.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "job_fee"
+ },
+ {
+  "text": "This is the tax authority. You owe unpaid taxes. Pay immediately by gift card or face arrest.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "fake_authority"
+ },
+ {
+  "text": "My love, I am a soldier overseas. I need you to send money for my leave papers.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "romance_money"
+ },
+ {
+  "text": "give me your bank account or else i am gonna kill u",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "threat_harm"
+ },
+ {
+  "text": "Tumhara address mujhe pata hai, paisay do warna bura hoga.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "threat_harm"
+ },
+ {
+  "text": "Main tumhein jaan se maar dunga agar tum ne kisi ko bataya.",
+  "score": 92,
+  "verdict": "high risk (scam or threat)",
+  "type": "threat_harm"
+ },
+ {
+  "text": "Bhai kal 5 baje milte hain, cafe pe.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Kal meeting nahi hoga, Monday ko hogi.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Assalam o Alaikum, kal ammi ko hospital le jana hai, gari mil sakti hai?",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Meeting ka time change ho gaya hai, ab 3 baje hogi.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Shaam ko ghar aate hue doodh le aana please.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Mujhe aaj office se late aana hai, khana kha lena.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Paper kaisa gaya? Kal ka result aa jayega shayad.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Eid mubarak! Allah aap ko aur aap ke ghar walon ko khushiyan de.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Aaj baarish ki wajah se class nahi hogi.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Tumhari baat samajh aa gayi, main shaam ko call karta hun.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Dukan ka hisaab kal subah dekh lena.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "کل شام کو کھانے پر آؤ، سب انتظار کریں گے۔",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "آج دفتر میں میٹنگ ہے، دیر سے آؤں گا۔",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "السلام علیکم، آپ کی طبیعت اب کیسی ہے؟",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "میں کل صبح بازار جا رہا ہوں، کچھ منگوانا ہو تو بتا دیں۔",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "بچوں کا رزلٹ آ گیا ہے، سب پاس ہو گئے۔",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "کل چھٹی ہے، کہیں گھومنے چلیں؟",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "شکریہ، آپ کا تحفہ مل گیا۔",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Thanks for the invoice, I'll send the payment by Friday.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_payment_mention"
+ },
+ {
+  "text": "Hey, are we still on for lunch tomorrow?",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Your Foodpanda order is on the way. Rider will arrive in 10 minutes.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "legit_notification"
+ },
+ {
+  "text": "Reminder: team standup at 10am tomorrow.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Can you send me the meeting notes when you get a chance?",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Happy birthday! Hope you have a great day.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Your appointment is confirmed for Monday at 4 pm. Reply to reschedule.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "legit_notification"
+ },
+ {
+  "text": "I'll call you after work, is that okay?",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Don't forget to bring your ID card to the exam hall tomorrow.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
+ },
+ {
+  "text": "Your bank statement for September is ready in the mobile app.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "legit_notification"
+ },
+ {
+  "text": "Bhai urgent paisay chahiye, kal wapis kar dunga.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Please confirm your address to receive your package.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Account verify karein: bit.ly/3kP9xQ",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Congratulations on your new job! Send me your account number so I can send you a gift.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Salam, apka parcel aya hai, address confirm kar dein.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Click here: bit.ly/3xYz",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "ok",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Bhai paisay bhej do, emergency hai.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "آپ کا پارسل آ گیا ہے، پتہ تصدیق کر دیں۔",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Mujhe tumse ek zaroori baat karni hai, abhi call karo.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Free Wi-Fi available, connect and log in with your email.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Hello, I saw your CV online. Are you interested in a remote job? Reply YES.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Please share your CNIC copy for the application form.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Pay your electricity bill before the due date to avoid late fee.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "Bhai kal wala udhaar wapis kar do please.",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ },
+ {
+  "text": "اپنا اکاؤنٹ نمبر بھیج دیں، رقم بھیجنی ہے۔",
+  "score": 40,
+  "verdict": "unclear, confidence low, never call it safe",
+  "type": "ambiguous"
+ }
+]
