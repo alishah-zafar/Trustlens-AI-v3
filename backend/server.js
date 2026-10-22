@@ -21,7 +21,7 @@ app.use(express.json({ limit: "10mb" }));
 app.get("/api/health", (_req, res) => {
   res.json({ 
     status: "ok", 
-    mode: process.env.OPENAI_API_KEY ? "llm" : "mock",
+  mode: process.env.GEMINI_API_KEY ? "gemini" : "mock",
   });
 });
 
@@ -39,7 +39,7 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(PORT, () => {
-  const textMode = process.env.OPENAI_API_KEY ? "LLM" : "MOCK";
+  const textMode = process.env.GEMINI_API_KEY ? "GEMINI" : "MOCK";
   console.log(`TrustLens AI backend running on port ${PORT}`);
   console.log(`  Text analysis: ${textMode} mode`);
 });
