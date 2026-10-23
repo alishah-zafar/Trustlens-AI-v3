@@ -245,12 +245,11 @@ ${text}
     const result = JSON.parse(content);
 
     return normalizeResult(result);
-  } catch (err) {
+    } catch (err) {
     console.error("Gemini analysis error:", err.message);
+    console.warn("Using local fallback analyzer.");
 
-    throw new Error(
-      "Gemini analysis failed. Check the API key, model name, network, and backend logs."
-    );
+    return mockAnalyze(text, lang);
   }
 }
 
@@ -493,7 +492,7 @@ const SCAM_KEYWORDS = {
     "you will regret", "pay or",
     // Roman Urdu threats
     "dekh lena", "jaan se", "maar doonga", "maar dunga", "khatam kar",
-    "bura hoga", "accha nahi hoga", "nahi hoga",
+    "bura hoga", "accha nahi hoga",
   ],
   extortion: ["blackmail", "ransom", "or i will", "unless you pay", "pay me or", "send money or", "i have your", "i will expose", "i will tell everyone"],
   romance_scam: ["my dear", "my love", "i love you", "soulmate", "come visit me", "send me money for", "i am stuck", "my beloved"],
