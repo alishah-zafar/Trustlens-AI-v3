@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { readFileSync } from "fs";
-
+   import { matchKnown } from "./known-patterns.js";
 let EXAMPLES_BLOCK = "";
 try {
   const examples = JSON.parse(
@@ -172,8 +172,26 @@ function getClient() {
  * Analyze text for scams, threats, and manipulation using Gemini.
  */
 export async function analyzeText(text, lang) {
+       if (!String(text).startsWith("Analyze this URL")) {
+       const known = matchKnown(text);
+       if (known) {
+         const s = MOCK_STRINGS[lang] || MOCK_STRINGS.en;
+         const urlMatch = String(text).match(/https?:\/\/[^\s<>"']+/i);
+         return {
+           riskScore: known.score,
+           confidence: "high",
+           explanation: s.explanations.high,
+           redFlags: known.tactics.map((t) => s.tacticLabels?.[t] || t),
+           tactics: known.tactics,
+           recommendations: known.critical ? s.recs.critical : s.recs.high,
+           detectedLanguage: detectLanguage(String(text).trim()),
+           containsUrl: !!urlMatch,
+           extractedUrl: urlMatch ? urlMatch[0] : null,
+         };
+       }
+     }
+  
   const client = getClient();
-
   if (!client) {
     throw new Error(
       "GEMINI_API_KEY is missing. Add it to backend/.env."
@@ -185,8 +203,8 @@ export async function analyzeText(text, lang) {
 
   try {
     const model = client.getGenerativeModel({
-      model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
-      systemInstruction: SYSTEM_PROMPT,
+     model: process.env.GEMINI_MODEL || "gemini-3.8-flash",
+   systemInstruction: SYSTEM_PROMPT + EXAMPLES_BLOCK,
       generationConfig: {
         temperature: 0.1,
         responseMimeType: "application/json",
