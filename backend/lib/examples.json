@@ -478,5 +478,11 @@
   "score": 40,
   "verdict": "unclear, confidence low, never call it safe",
   "type": "ambiguous"
+ },
+ {
+  "text": "Assalam o alaikum! Kal ki meeting 3 baje hai. Agenda bhej dunga sham tak. Office mein milte hain.",
+  "score": 5,
+  "verdict": "safe, normal message",
+  "type": "normal_chat"
  }
 ]
