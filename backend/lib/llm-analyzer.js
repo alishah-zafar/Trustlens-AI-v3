@@ -191,7 +191,7 @@ export async function analyzeText(text, lang) {
        }
      }
   
-
+  const client = getClient();
   if (!client) {
     throw new Error(
       "GEMINI_API_KEY is missing. Add it to backend/.env."
@@ -203,7 +203,7 @@ export async function analyzeText(text, lang) {
 
   try {
     const model = client.getGenerativeModel({
-      model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
+     model: process.env.GEMINI_MODEL || "gemini-3.8-flash",
    systemInstruction: SYSTEM_PROMPT + EXAMPLES_BLOCK,
       generationConfig: {
         temperature: 0.1,
